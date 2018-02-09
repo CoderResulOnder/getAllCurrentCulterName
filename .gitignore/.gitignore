@@ -1,0 +1,22 @@
+   string path = @"C:\CulterInfo\AllCulterInfo.txt";
+            Directory.CreateDirectory(@"C:\CulterInfo");
+
+            if (File.Exists(path)==false)
+            {
+             
+                using (System.IO.StreamWriter fs = new System.IO.StreamWriter(path, true))
+                {
+                    // Add some information to the file.
+                    
+                    CultureInfo[] cultures = CultureInfo.GetCultures(CultureTypes.NeutralCultures);
+
+                    foreach (var culture in cultures)
+                    {
+                        string CulterInfoTXT = culture.TextInfo.CultureName + "_____" + culture.DisplayName;
+
+                        fs.WriteLine(CulterInfoTXT);
+                    }
+
+                    fs.Close();
+                }
+            }
